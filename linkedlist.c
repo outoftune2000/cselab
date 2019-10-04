@@ -1,3 +1,4 @@
+//A program to insert , delete and display elements in a linked list
 #include<stdio.h>
 #include<stdlib.h>
 struct list{
@@ -6,7 +7,7 @@ struct list{
 	};
 struct list* head=NULL;
 struct list *ptr,*ptr1;
-
+//The function for allocating and inserting an element to the end of the list
 allocation(){
 	int data;
 	struct list *temp=(struct list*)malloc(sizeof(struct list ));
@@ -27,6 +28,7 @@ allocation(){
 		temp->link=NULL;
 		}
 	}
+//Function for printing the list
 void PrintL(){
 	ptr=head;
 	if (head==NULL)
@@ -40,6 +42,7 @@ void PrintL(){
 		printf("%d -> NULL\n",ptr->data);
 		}
 	}
+//Function for deleting list element from the end of the list
 void deletedata(){
 	ptr=head;
 	if(head==NULL){
