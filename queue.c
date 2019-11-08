@@ -1,57 +1,73 @@
-#include <stdio.h>
-int a[10],n,first,top,ele,i;
-void queue()
+#include<stdio.h>
+#include<stdlib.h>
+int queue[100],choice,n,x,i;
+int front=0,rear=0;
+void enqueue(void)
 {
-	if (top==9){
-		printf("Queue Overflow\n");
-	}
-	else{
-		printf("Enter the element to be pushed");
-		scanf("%d",&ele);
-		printf("\n");
-		top++;	
-		a[top]=ele;
-	}
-}
-void dequeue()
-{
-	if (first==top){
-		printf("Queue Underflow\n");
-	}
-	else{
-		printf("Element to be popped: %d\n",a[top]);
-		first++;
-	}
-}
-void PrintQ()
-{
-	if (top==first){
-		printf("queue is empty\n");
-	}
-	else{
-	printf("The current queue is :");
-	for(i=first;i<=top;i++){
-		printf("Element %d = %d\t",i+1,a[i]);
-	}printf("\n");
-}}	
-void main(){
-	top=-1,first=-1;
-	int c;
-	char ch='y';
-	while(ch=='y'){
-	printf("Enter your choice:\n 1. PRINT QUEUE\n 2.QUEUE ELEMENT \n 3.DEQUEUE ELEMENT\n 4. EXIT \n");
-	scanf("%d",&c);
-	switch(c)
+	if(rear==-1)
+		printf("queue is empty");
+	else
+	{
+		printf("Enter the Number to be Pushed : \t");
+		scanf("%d",&x);		
+		queue[rear]=x;
+		rear=rear+1;
+		if(rear==n)
 		{
-			case 1: PrintQ();
-				break;
-			case 2:queue();
-				break;
-			case 3:dequeue();
-				break;
-			case 4: ch='n';
-				break;
-			default: printf("INVALID CHOICE\n");
+			printf("The queue is filled.\n No more entries can be added!!!");
+		}
+	}		
+}
+void dequeue(void)
+{
+	if(front==-1)
+		printf("Queue is underflow!!!");
+	else
+		front++;
+}
+void display(void)
+{
+	if(rear==-1)
+	{
+		printf("queue is empty");
+	}
+	else
+	{	
+		for(i=front;i<rear;i++)
+			printf("%d",queue[i]);
+	}
+	printf("\nEnter Next Choice\n");
+	printf("\t1. ENQUEUE\n\t2. DEQUEUE \n\t3. DISPLAY\n \t4.EXIT\n");
+}
+void main()
+{
+	printf("Enter the size of queue : \t");
+	scanf("%d",&n);
+	printf("OPERATIONS USING queue : \n");
+	printf("\t1. ENQUEUE\n\t2. DEQUEUE \n\t3. DISPLAY\n \t4.EXIT\n");
+	do
+	{
+		printf("Enter the choice : \t");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+			case 1:	enqueue();
+					break;
+			case 2:	dequeue();
+					break;
+			case 3:	display();
+					break;
+			case 4:	printf("OPERATION TERMINATED\n");
+					exit(0);
+			default:	printf("Invalid Input");
+					break;
 		}
 	}
+	while(choice!=4);
+		
 }
+
+		
+				
+		
+

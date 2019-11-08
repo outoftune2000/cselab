@@ -1,59 +1,68 @@
-#include <stdio.h>
-int a[10],n,top,ele,i;
-void push()
+#include<stdio.h>
+#include<stdlib.h>
+int stack[100],choice,n,top,x,i;
+void push(void)
 {
-	if (top==9){
-		printf("Stack Overflow\n");
-	}
-	else{
-		printf("Enter the element to be pushed");
-		scanf("%d",&ele);
-		printf("\n");
-		top++;	
-		a[top]=ele;
-	}
+	if(top>=n-1)
+		printf("STACK OVERFLOW");
+	else
+	{
+		printf("Enter the Number to be Pushed : \t");
+		scanf("%d",&x);
+		top++;
+		stack[top]=x;
+	}		
 }
-void pop()
+void pop(void)
 {
-	if (top==-1){
-		printf("Stack Underflow\n");
-	}
-	else{
-		printf("Element to be popped: %d\n",a[top]);
+	if(top<=-1)
+		printf("STACK UNDERFLOW");
+	else
 		top--;
-	}
 }
-void PrintStack()
+void display(void)
 {
-	int t;
-	t=top;
-	if (top==-1){
-		printf("Stack is empty\n");
+	if(top>0)
+	{
+		printf("STACK ELEMENTS : \t");
+		for(i=top;i>=0;i--)
+			printf("%d",stack[i]);
+	printf("\nEnter Next Choice");
+	printf("\t1. PUSH \n\t2. POP \n\t3. DISPLAY\n \t4.  EXIT\n");
 	}
-	else{
-	printf("The current stack is :");
-	for(i=0;i<=top;i++){
-		printf("Element %d = %d\t",i+1,a[i]);
-	}printf("\n");
-}}	
-void main(){
+	else
+		printf("NOTHING TO DISPLAY\nEMPTY STACK");
+}
+void main()
+{
 	top=-1;
-	int c;
-	char ch='y';
-	while(ch=='y'){
-	printf("Enter your choice:\n 1. PRINT STACK\n 2.PUSH ELEMENT \n 3.POP ELEMENT\n 4. EXIT \n");
-	scanf("%d",&c);
-	switch(c)
+	printf("Enter the size of Stack : \t");
+	scanf("%d",&n);
+	printf("OPERATIONS USING STACK : \n");
+	printf("\t1. PUSH \n\t2. POP \n\t3. DISPLAY\n \t4.EXIT\n");
+	do
+	{
+		printf("Enter the choice : \t");
+		scanf("%d",&choice);
+		switch(choice)
 		{
-			case 1: PrintStack();
-				break;
-			case 2:push();
-				break;
-			case 3:pop();
-				break;
-			case 4: ch='n';
-				break;
-			default: printf("INVALID CHOICE\n");
+			case 1:	push();
+					break;
+			case 2:	pop();
+					break;
+			case 3:	display();
+					break;
+			case 4:	printf("OPERATION TERMINATED\n");
+					exit(0);
+			default:	printf("Invalid Input");
+					break;
 		}
 	}
+	while(choice!=4);
+		
 }
+
+		
+				
+		
+
